@@ -1,4 +1,17 @@
 <style>
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        color: black !important;
+        border-radius: 4px;
+        border: 0px solid #828282;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: none;
+        color: black !important;
+    }
+</style>
+<style>
     :root {
         --coloropacity: rgba(255, 122, 89, 0);
         --white: #ffffff;
@@ -272,5 +285,118 @@
 
     .modal.fade.in {
         overflow-y: hidden;
+    }
+
+    .containers {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .cards {
+        position: relative;
+        background: #fff;
+        max-width: 325px;
+        width: 325px;
+        height: auto;
+        margin: 25px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-contents {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 30px;
+    }
+
+    .card-images {
+        max-height: 200px;
+    }
+
+    .card-images img {
+        width: 100%;
+        height: 20vh;
+        object-fit: contain;
+    }
+
+
+
+    .card-infos {
+        position: relative;
+        color: #222;
+        padding: 10px 20px 20px;
+
+    }
+
+    .card-infos h3 {
+        font-size: 1.8em;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .card-infos p {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+
+
+    ._pagination {
+        user-select: none;
+        margin: 30px 30px 60px;
+        text-align: center;
+    }
+
+    ._pagination li {
+        display: inline-block;
+        margin: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+    }
+
+    ._pagination li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2em;
+        line-height: 45px;
+    }
+
+    ._previous-page,
+    ._next-page {
+        background: #0ab1ce;
+        width: 80px;
+        border-radius: 45px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    ._previous-page:hover {
+        transform: translateX(-5px);
+    }
+
+    ._next-page:hover {
+        transform: translateX(5px);
+    }
+
+
+    ._current-page,
+    ._dots {
+        background: #ccc;
+        width: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    ._active {
+        background: #0ab1ce;
+    }
+
+    ._disable {
+        background: #ccc;
     }
 </style>

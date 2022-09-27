@@ -33,50 +33,55 @@
                 </a>
 
 
-
             </div>
 
         </div>
-        <table id="table_" class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Student Number</th>
+        <div class="table-responsive">
+            <table id="table_" class="table table-hover ">
+                <thead>
+                    <tr>
+                        <th>Student Number</th>
 
-                    <th>Student Name</th>
+                        <th>Student Name</th>
 
-                    <th>Student Surname</th>
+                        <th>Student Surname</th>
 
-                    <th>Sport Name</th>
+                        <th>Sport Name</th>
 
-                    <th>Student Email</th>
+                        <th>Student Email</th>
 
-                    <th>Student Phone Number</th>
+                        <th>Student Phone Number</th>
 
-                    <th>Profile Photo</th>
+                        <th>Profile Photo</th>
 
-                </tr>
-            </thead>
-            <tbody>
+                        <th>Edit</th>
 
-            </tbody>
-            <tfoot class="thead-light">
-                <tr>
-                    <th>Student Number</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                    <th>Student Name</th>
+                </tbody>
+                <tfoot class="thead-light">
+                    <tr>
+                        <th>Student Number</th>
 
-                    <th>Student Surname</th>
+                        <th>Student Name</th>
 
-                    <th>Sport Name</th>
+                        <th>Student Surname</th>
 
-                    <th>Student Email</th>
+                        <th>Sport Name</th>
 
-                    <th>Student Phone Number</th>
+                        <th>Student Email</th>
 
-                    <th>Profile Photo</th>
-                </tr>
-            </tfoot>
-        </table>
+                        <th>Student Phone Number</th>
+
+                        <th>Profile Photo</th>
+
+                        <th>Edit</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 
 
@@ -174,9 +179,9 @@
                                                         <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="studentCell" id="studentCell" onchange="validateCell(this)">
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
+                                                        <small style="color:red"></small>
                                                         <label for="inputEmail4">Profile Photo</label>
-                                                        <input type="file" accept=".pdf,.png,.jpg,.jpeg," class="form-control" name="profilePhoto" id="profilePhoto" onblur="file_format('profilePhoto')">
+                                                        <input type="file" class="form-control" name="profilePhoto" id="profilePhoto" onblur="pic_format('profilePhoto')">
                                                     </div>
 
 
@@ -301,14 +306,18 @@
                                                         <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="studentCell" id="edit_studentCell" onchange="validateCell(this)">
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
+                                                        <small style="color:red"></small>
                                                         <label for="inputEmail4">Profile Photo</label>
-                                                        <input type="file" accept=".pdf,.png,.jpg,.jpeg," class="form-control" name="profilePhoto" id="edit_profilePhoto" onblur="file_format('profilePhoto')">
+                                                        <input type="file" class="form-control" name="profilePhoto" id="edit_profilePhoto" onblur="pic_format('edit_profilePhoto')" oninput="pic.src=window.URL.createObjectURL(this.files[0])">
+                                                        <input type="hidden" name="filesid" id="filesid">
+                                                        <label class="mt-4" id="getPicName">No image</label>
+                                                        <div id="getPicPath"></div>
+
                                                     </div>
 
 
                                                     <div class="form-group col-md-12 ">
-                                                        <button type="submit" id="submitBtnEdit" class="btn btn-primary ml-auto">Save</button>
+                                                        <button type="submit" id="submitBtnEdit" class="btn btn-primary ml-auto mt-5">Save</button>
                                                     </div>
 
                                                 </div>
@@ -350,9 +359,16 @@ echo view('partial/validations_js');
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
         });
 
-
         load_table();
+        $(document).on("#edit_profilePhoto input", "input:file", function(e) {
+            let fileName = e.target.files[0].name;
+            $('#getPicName').html(fileName);
+        });
     });
+
+    function preview() {
+        frame.src = URL.createObjectURL(event.target.files[0]);
+    }
 
     function add_student(form) {
         $('#submitBtn').attr('disabled', 'true');
@@ -368,12 +384,10 @@ echo view('partial/validations_js');
             cache: false,
             async: false,
             success: function(data) {
-                console.log(data);
+
                 if (data.error == false) {
 
 
-
-                    // load_table();
 
                     setTimeout(function() {
                         Swal.fire({
@@ -383,6 +397,8 @@ echo view('partial/validations_js');
                         })
                     }, 300);
                     $('#submitBtn').removeAttr('disabled');
+
+                    load_table();
                 } else {
 
                     Swal.fire({
@@ -392,8 +408,6 @@ echo view('partial/validations_js');
                     })
                     $('#submitBtn').removeAttr('disabled');
                 }
-
-
 
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -483,6 +497,8 @@ echo view('partial/validations_js');
     }
 
     function view_student(t) {
+
+        $('#filesid').val($(t).attr('data-filesid'));
         $('#studentID').val($(t).attr('data-studentID'));
         $('#edit_studentSport').val($(t).attr('data-sportID'));
         $('#edit_studentFirstname').val($(t).attr('data-studentFirstname'));
@@ -493,7 +509,8 @@ echo view('partial/validations_js');
         $('#edit_studentEmail').val($(t).attr('data-studentEmail'));
         $('#edit_studentAddress').val($(t).attr('data-studentAddress'));
         $('#edit_studentDob').val($(t).attr('data-studentDob'));
-
+        $('#getPicName').html($(t).attr('data-picname'));
+        $('#getPicPath').html('<img id="pic" src = "<?php echo base_url(); ?>/assets/uploads/student/' + $(t).attr('data-picname') + '" width = "70px" height = "70px" >')
         $('#edit_student').modal('show');
     }
 
@@ -519,11 +536,8 @@ echo view('partial/validations_js');
                     'data': "studentSurname"
                 },
                 {
-                    'data': "sportID",
-                    render: function(data, type, row, meta) {
+                    'data': "sportName",
 
-                        return "";
-                    }
                 },
                 {
                     'data': "studentEmail"
@@ -531,11 +545,34 @@ echo view('partial/validations_js');
                 {
                     'data': "studentCell"
                 },
+
                 {
+                    "data": "picname",
+                    render: function(data, type, row, meta) {
+
+                        // $('[data-bs-toggle="popover"]').popover();
+                        $('#pic_' + row['studentID']).popover({
+                            placement: 'top',
+                            trigger: 'hover',
+                            html: true,
+                            content: function() {
+                                var result = "";
+
+                                result += (('<div id="picDiv" class="media" style="pointer-events: none;"><img src="<?php echo base_url(); ?>/assets/uploads/student/' + row['picname'] + '" width = "140px" height = "140px" class="mr-3" alt="No Image"><div class="media-body"></div></div>'));
+
+                                return result;
+                            }
+
+                        });
+                        var pic = ' <span id="pic_' + row['studentID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/student/' + row['picname'] + '" width = "30px" height = "30px" > ';
+
+                        return pic;
+                    }
+                }, {
                     "data": "",
                     render: function(data, type, row, meta) {
 
-                        var view = '<button onclick="view_student(this)" data-studentID="' + row['studentID'] + '" data-sportID="' + row['sportID'] + '"  data-studentFirstname="' + row['studentFirstname'] + '"  data-studentSurname="' + row['studentSurname'] + '"  data-studentNumber="' + row['studentNumber'] + '"  data-studentCell="' + row['studentCell'] + '"  data-studentGender="' + row['studentGender'] + '"  data-studentEmail="' + row['studentEmail'] + '" data-studentAddress="' + row['studentAddress'] + '" data-studentDob="' + row['studentDob'] + '"  class="btn btn-info text-white pl-2 pr-2 btn-sm ml-1 mr-1" title="Burial Report" >' +
+                        var view = '<button onclick="view_student(this)" data-studentID="' + row['studentID'] + '" data-sportID="' + row['sportID'] + '"  data-studentFirstname="' + row['studentFirstname'] + '"  data-studentSurname="' + row['studentSurname'] + '"  data-studentNumber="' + row['studentNumber'] + '"  data-studentCell="' + row['studentCell'] + '"  data-studentGender="' + row['studentGender'] + '"  data-studentEmail="' + row['studentEmail'] + '" data-studentAddress="' + row['studentAddress'] + '" data-studentDob="' + row['studentDob'] + '" data-filesid="' + row['filesid'] + '" data-picname="' + row['picname'] + '" class="btn btn-info text-white pl-2 pr-2 btn-sm ml-1 mr-1" title="Edit Student" >' +
                             '<i class="fas fa-book-open"></i>' +
                             '</button>';
 

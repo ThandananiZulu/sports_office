@@ -1,5 +1,5 @@
 <?php helper(['database', 'url']); ?>
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-muted bg-muted fixed-top">
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" onclick="containerWidthResize()">
@@ -32,10 +32,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="have-children"><a href="#"><span class="fa fa-tags"></span>Category</a>
+                    <li class="have-children"><a href="#"><span class="fa fa-tags"></span>Noticeboard</a>
                         <ul>
-                            <li><a href="#">Add Category</a></li>
-                            <li><a href="#">View Categories</a></li>
+                            <li class="mm-active"><a href="<?php echo base_url('public/noticeboard'); ?>">View Noticeboard</a>
+
                         </ul>
                     </li>
                     <li class="have-children"><a href="#"><span class="fa fa-trophy"></span>Award</a>

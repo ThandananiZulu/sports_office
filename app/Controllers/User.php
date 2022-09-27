@@ -27,7 +27,7 @@ class User extends BaseController
             $builder = $db->table('staff');
             $builder->select('staff.*');
 
-            $builder->where('staff.username', $username);
+            $builder->where('staff.staffEmail', $username);
 
             $query = $builder->get();
             $user = $query->getRow();

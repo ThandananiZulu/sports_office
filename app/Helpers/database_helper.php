@@ -50,3 +50,24 @@ function get_sports()
 
     return $data;
 }
+function get_file_name($id)
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('studentfiles');
+    $builder->select("name");
+    $builder->where('id', $id);
+    $data = $builder->get();
+
+    $data = $data->getRow();
+
+    return $data;
+}
+function set_user_details($username, $password)
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('oauth_users');
+    $data =  $builder->insert(array('username' => $username, 'password' => $password, 'scope' => "app"));
+
+
+    return $data;
+}

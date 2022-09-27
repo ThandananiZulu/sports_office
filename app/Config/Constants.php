@@ -98,3 +98,4 @@ define('COMPANY_EMAIL', 'mrzuluthandanani@gmail.com');
 
 // COMPANY NAME
 define('COMPANY_NAME', 'MUT Sports Office');
+define('MYPATH', __DIR__  . DIRECTORY_SEPARATOR);

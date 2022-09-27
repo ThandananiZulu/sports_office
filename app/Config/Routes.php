@@ -48,6 +48,7 @@ $routes->add('addstudent', 'Route::addstudent');
 $routes->add('addstaff', 'Route::addstaff');
 $routes->add('addcoach', 'Route::addcoach');
 $routes->add('', 'Route::addcoach');
+$routes->add('noticeboard', 'Route::noticeboard');
 
 $routes->resource('route');
 $routes->resource('user');
@@ -56,6 +57,8 @@ $routes->resource('staff');
 $routes->resource('coach');
 $routes->resource('student');
 $routes->add('student/update', 'Student::update');
+$routes->add('staff/update', 'Staff::update');
+$routes->add('coach/update', 'Coach::update');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

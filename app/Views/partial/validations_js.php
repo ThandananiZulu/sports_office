@@ -60,7 +60,7 @@
         }
     }
 
-    function file_format(identifier) {
+    function pic_format(identifier) {
         var file = document.getElementById(identifier);
 
         file.onchange = function(e) {
@@ -78,6 +78,8 @@
                 switch (ext) {
                     case 'jpg':
                     case 'jpeg':
+                    case 'JPG':
+                    case 'JPEG':
                     case 'png':
                     case 'PNG':
                         // aleert{}

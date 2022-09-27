@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 use App\Models\studentModel;
+use App\Models\studentFilesModel;
 
 
 class Student extends BaseController
 {
     protected $modelName = 'App\Models\studentModel';
+    protected $models = 'App\Models\studentFilesModel';
     protected $format = 'json';
 
     use ResponseTrait;
@@ -21,11 +23,20 @@ class Student extends BaseController
 
         $model = new studentModel();
         $students = $model->findAll();
+        $db = \Config\Database::connect();
+        $builder = $db->table('student');
+        $builder->select('student.*, studentfiles.name as picname,studentfiles.id as filesid,sport.sportName as sportName');
+        $builder->join('studentfiles', 'student.studentId = studentfiles.rel_id', 'left');
+        $builder->join('sport', 'student.sportID = sport.sportID');
+
+        $data = $builder->get()->getResult();
+
+
         $output = array(
             'draw' => $draw,
             'recordsTotal' => count($students),
             'recordsFiltered' => count($students),
-            'data' => $students
+            'data' => $data
         );
 
         return $this->respond($output);
@@ -169,24 +180,36 @@ class Student extends BaseController
 
 
             $model = new studentModel();
-            $studentID = $model->save($data);
+            $studentID = $model->update($this->request->getVar('studentID'), $data);
+
+            // if files"name" is empty , dont insert/update
 
             $file = $this->request->getFile('profilePhoto');
-
+            $filesid = $this->request->getVar('filesid');
             if ($file)
                 if ($file->isValid()) {
 
+                    $models = new studentFilesModel();
+
                     $file->move('../assets/uploads/student/');
-                    $pic = $file->getName();
-                    $db      = \Config\Database::connect();
-                    $builder2 = $db->table('studentfiles');
-                    $builder2->insert(array(
-                        'name' => $pic,
-                        'title' => 'profile Pic',
-                        'created_date' => date('Y-m-d H:i:s'),
-                        'rel_id' => $studentID,
-                        'rel' => 'student'
-                    ));
+
+                    $row['id'] = $filesid;
+                    $row['name'] = $file->getName();
+                    if (total_rows('studentfiles', ['id' => $filesid]) <= 0) {
+                        $models->insert(array(
+                            'name' => $row['name'],
+                            'title' => 'profile Pic',
+                            'created_date' => date('Y-m-d H:i:s'),
+                            'rel_id' => $this->request->getVar('studentID'),
+                            'rel' => 'student'
+                        ));
+                    } else {
+                        $fileDesc = get_file_name($filesid);
+
+                        $models->update($filesid, $row);
+
+                        unlink(ROOTPATH . "assets\uploads\student\\" . $fileDesc->name);
+                    }
                 }
 
 

@@ -148,4 +148,14 @@ class Route extends BaseController
             return view('auth/login');
         }
     }
+    public function noticeboard()
+    {
+        if (session()->has('staff')) {
+            $GLOBALS['SELECTED'] = 'noticeboard';
+
+            return view('noticeboard');
+        } else {
+            return view('auth/login');
+        }
+    }
 }
