@@ -59,6 +59,8 @@ $routes->resource('student');
 $routes->add('student/update', 'Student::update');
 $routes->add('staff/update', 'Staff::update');
 $routes->add('coach/update', 'Coach::update');
+$routes->add('noticeboard/index', 'Noticeboard::index');
+$routes->add('noticeboard/create', 'Noticeboard::create');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

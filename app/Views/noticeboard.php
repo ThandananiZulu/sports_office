@@ -122,19 +122,19 @@ echo view('partial/validations_js'); ?>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label>1st Image</label>
-                                                        <input type="file" class="form-control" name="firstImage" id="notice_img1" onblur="pic_format('notice_img1')">
+                                                        <input type="file" class="form-control" name="firstImage" id="notice_img1" oninput="toggleSecondFileInput('notice_img',1)" onblur=" pic_format('notice_img1')" onchange="setReadOnly('notice_img', 1)">
 
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red"></small>
                                                         <label>2nd Image<label class="text-muted ml-4">(Optional)</label></label>
-                                                        <input type="file" class="form-control" name="secondImage" id="notice_img2" onblur="pic_format('notice_img2')">
+                                                        <input type="file" class="form-control" name="secondImage" id="notice_img2" disabled oninput="toggleSecondFileInput('notice_img',2)" onblur="pic_format('notice_img2')" onchange="setReadOnly('notice_img', 2)">
 
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red"></small>
                                                         <label>3rd Image<label class="text-muted ml-4">(Optional)</label></label>
-                                                        <input type="file" class="form-control" name="thirdImage" id="notice_img3" onblur="pic_format('notice_img3')">
+                                                        <input type="file" class="form-control" name="thirdImage" id="notice_img3" disabled onblur="pic_format('notice_img3')">
 
                                                     </div>
 
@@ -207,7 +207,7 @@ echo view('partial/validations_js'); ?>
                                                     </div>
                                                     <span class="visually-hidden">Previous</span>
                                                 </button>
-                                                <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                                     <div class="bg-secondary  mb-3 ml-3 mr-4">
                                                         <span class="carousel-control-next-icon mt-4 mb-3" aria-hidden="true"></span>
                                                     </div>
@@ -255,13 +255,6 @@ echo view('partial/validations_js'); ?>
                     </div>
 
 
-
-
-
-
-
-
-
                 </div>
 
             </div>
@@ -278,10 +271,42 @@ echo view('partial/validations_js'); ?>
         load_noticeboard();
     });
 
+    function toggleSecondFileInput(id, num) {
+        if (num == 1) {
+            $('#' + id + '2').prop("disabled", false);
+        }
+        if (num == 2) {
+            $('#' + id + '3').prop("disabled", false);
+        }
+    }
+
+    function setReadOnly(id, num) {
+        alert('setReadOnly');
+        if (num == 1) {
+            var file = document.getElementById(id + '2');
+            if (file.files.length == 0)
+                // $('#' + id + '2').prop("disabled", true);
+                alert('Please select')
+        }
+        if (num == 2) {
+            var file = document.getElementById(id + '3');
+            if (file.files.length == 0)
+                $('#' + id + '3').prop("disabled", true);
+        }
+    }
+
     function showDetailed(t) {
+
         $('#firstCaouselImg').html("");
         $('#secondCaouselImg').html("");
         $('#thirdCaouselImg').html("");
+
+        $('#firstCaouselImg').addClass("active");
+        $('#secondCaouselImg').removeClass('active');
+        $('#thirdCaouselImg').removeClass('active');
+        $('#firstIndicator').addClass('active');
+        $('#secondIndicator').removeClass("active");
+        $('#thirdIndicator').removeClass("active");
         $('#firstIndicator').addClass("d-none");
         $('#secondIndicator').addClass("d-none");
         $('#thirdIndicator').addClass("d-none");
@@ -289,8 +314,14 @@ echo view('partial/validations_js'); ?>
         var carouselTwo = '';
         var carouselThree = '';
 
+        $('#carouselExampleIndicators').carousel('pause');
+
         if ($(t).attr('data-secondImage') != "" && $(t).attr('data-thirdImage') != "") {
-            $('#carouselExampleIndicators').h
+            $('.carousel-control-prev').removeClass('d-none');
+            $('.carousel-control-next').removeClass('d-none');
+        } else {
+            $('.carousel-control-prev').addClass('d-none');
+            $('.carousel-control-next').addClass('d-none');
         }
         if ($(t).attr('data-firstImage') != "") {
             carouselOne = '<img src="<?php echo base_url(); ?>/assets/uploads/noticeboard/' + $(t).attr('data-firstImage') + '" width="500px" height="377px" class="d-block" alt="...">'

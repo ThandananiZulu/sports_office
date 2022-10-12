@@ -3,10 +3,11 @@
 
 <head>
     <meta name="msapplication-tap-highlight" content="no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-    <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="<?php echo base_url(); ?>/assets/assets/bootstrap/boots5.js"></script>
-
+    <!-- <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>/assets/assets/bootstrap/boots5.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script> -->
     <!-- <script src="<?php echo base_url(); ?>/assets/ajax/libs/popper.js/1.14.7/umd/popper.js"></script> -->
 
@@ -72,8 +73,7 @@
 
     <script src="<?php echo base_url(); ?>/assets/js/bamburgh.min.js"></script>
 
-
-    <script src="https://kit.fontawesome.com/b7888a1d93.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/84288e2709.js" crossorigin="anonymous"></script>
     <!--Apexcharts-->
 
     <script src="<?php echo base_url(); ?>/assets/vendor/apexcharts/js/apexcharts.min.js"></script>
@@ -118,7 +118,8 @@
     <script src="<?php echo base_url(); ?>/assets/js/select2.full.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/sweet/sweetalert2.all.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/tinymce/tinymce.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js" integrity="sha512-jgqnY5wi2gxl4Yj4iXEEpVWrBI6JeJQc67LVC/a65X/TeMotFC0veqlMqYHAI3FfS3hCdx5z6fqKFzXqdnKXDw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
         $(document).ready(function() {
 

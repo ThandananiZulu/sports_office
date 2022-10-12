@@ -399,4 +399,28 @@
     ._disable {
         background: #ccc;
     }
+
+    .formhovercolor.form-control:focus {
+        border-color: gray;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+
+    }
+
+
+    .btnsizing {
+        margin-top: -5px;
+        padding-top: -1%;
+        padding-bottom: -1%;
+        height: 28px
+    }
+
+    .hovers:hover i {
+        /* background-color: #fff; */
+        color: #fff !important;
+    }
+
+    .hovers:not(:hover) i {
+        /* background-color: #fff; */
+        color: gray;
+    }
 </style>
