@@ -30,7 +30,74 @@ function send_email($email_addr = '', $subject = '', $message = '', $attachement
 
     return $email->send();
 }
+function timeAgofunc($timestamp)
+{
+    $datetime1 = new DateTime("now");
+    $datetime2 = date_create($timestamp);
+    $diff = date_diff($datetime1, $datetime2);
+    $timemsg = '';
+    if ($diff->y > 0) {
+        $timemsg = $diff->y . ' year' . ($diff->y > 1 ? "'s" : '');
+    } else if ($diff->m > 0) {
+        $timemsg = $diff->m . ' month' . ($diff->m > 1 ? "'s" : '');
+    } else if ($diff->d > 0) {
+        $timemsg = $diff->d . ' day' . ($diff->d > 1 ? "'s" : '');
+    } else if ($diff->h > 0) {
+        $timemsg = $diff->h . ' hour' . ($diff->h > 1 ? "'s" : '');
+    } else if ($diff->i > 0) {
+        $timemsg = $diff->i . ' minute' . ($diff->i > 1 ? "'s" : '');
+    } else if ($diff->s > 0) {
+        $timemsg = $diff->s . ' second' . ($diff->s > 1 ? "'s" : '');
+    }
 
+    $timemsg = $timemsg . ' ago';
+    return $timemsg;
+}
+function timeAgo($phpDate)
+{
+    $timestamp = date('Y-m-d H:i:s');
+
+    $timestampYear = substr($phpDate, 0, 4);
+    $timestampMonth = substr($phpDate, 5, 2);
+    $timestampDay = substr($phpDate, 8, 2);
+    $timestampHour = substr($phpDate, 11, 2);
+    $timestampMin = substr($phpDate, 14, 2);
+    $timestampSec = substr($phpDate, 17, 2);
+
+    //php date Strings
+    $Year = substr($timestamp, 0, 4);
+    $Month = substr($timestamp, 5, 2);
+    $Day = substr($timestamp, 8, 2);
+    $Hour = substr($timestamp, 11, 2);
+    $Min = substr($timestamp, 14, 2);
+    $Sec = substr($timestamp, 17, 2);
+
+    $diffYear = ($Year - $timestampYear);
+    $diffMonth = ($Month - $timestampMonth);
+    $diffDay = ($Day - $timestampDay);
+
+    $diffHours = ($Hour - $timestampHour);
+    $diffMinutes = ($Min - $timestampMin);
+    $diffSeconds = ($Sec - $timestampSec);
+
+    $timemsg = '';
+    if ($diffYear > 0) {
+        $timemsg = $diffYear . ' year' . ($diffYear > 1 ? "'s" : '');
+    } else if ($diffMonth > 0) {
+        $timemsg = $diffMonth . ' month' . ($diffMonth > 1 ? "'s" : '');
+    } else if ($diffDay > 0) {
+        $timemsg = $diffDay . ' day' . ($diffDay > 1 ? "'s" : '');
+    } else if ($diffHours > 0) {
+        $timemsg = $diffHours . ' hour' . ($diffHours > 1 ? "'s" : '');
+    } else if ($diffMinutes > 0) {
+        $timemsg = $diffMinutes . ' minute' . ($diffMinutes > 1 ? "'s" : '');
+    } else if ($diffSeconds > 0) {
+        $timemsg = $diffSeconds . ' second' . ($diffSeconds > 1 ? "'s" : '');
+    }
+
+    $timemsg = $timemsg . ' ago';
+    return $timemsg;
+}
 function send_simple_email($email, $subject, $message)
 {
 

@@ -88,7 +88,7 @@
 </div>
 
 
-<div class="modal fade in" id="add_student" role="dialog" tabindex="-1" aria-labelledby="add_student" aria-hidden="true">
+<div class="" id="add_student" role="dialog" tabindex="-1" aria-labelledby="add_student" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header text-dark ">
@@ -564,7 +564,7 @@ echo view('partial/validations_js');
                             }
 
                         });
-                        var pic = ' <span id="pic_' + row['studentID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/student/' + row['picname'] + '" width = "30px" height = "30px" > ';
+                        var pic = ' <span id="pic_' + row['studentID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/student/' + row['picname'] + '" width = "30px" height = "30px" onerror="this.onerror=null;this.src=\'<?php echo base_url(); ?>/assets/img/none.png \';"> ';
 
                         return pic;
                     }

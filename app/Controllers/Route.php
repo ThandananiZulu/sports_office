@@ -158,4 +158,14 @@ class Route extends BaseController
             return view('auth/login');
         }
     }
+    public function inventory()
+    {
+        if (session()->has('staff')) {
+            $GLOBALS['SELECTED'] = 'inventory';
+
+            return view('inventory');
+        } else {
+            return view('auth/login');
+        }
+    }
 }

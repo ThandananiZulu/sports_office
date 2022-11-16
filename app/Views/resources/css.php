@@ -270,6 +270,10 @@
 
     }
 
+    .hidden {
+        display: none;
+    }
+
     .marginright {
         padding-right: 200px;
     }

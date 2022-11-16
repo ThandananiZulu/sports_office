@@ -9,7 +9,7 @@
             <div class="">
 
                 <h5 class=" mb-2  text-dark text-uppercase fonttype display-6 text-center">
-                    Add Coach
+                    Add Inventory
 
                 </h5>
 
@@ -23,13 +23,13 @@
     <div class="card card-box mb-5">
         <div class="card-header text-dark">
             <div class="card-header--title">
-                <small>Coachs</small>
+                <small>Inventory</small>
                 <b>List</b>
             </div>
             <div class="card-header--actions">
-                <a href="#" class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#add_coach">
+                <a href="#" class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#add_item">
 
-                    <i class="fas fa-plus"> </i> Add Coach
+                    <i class="fas fa-plus"> </i> Add Inventory
                 </a>
 
 
@@ -37,25 +37,27 @@
 
         </div>
         <div class="table-responsive">
-            <table id="table_" class="table table-hover ">
+            <table id="table_" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Coach Number</th>
 
-                        <th>Coach Name</th>
+                        <th>Item Name</th>
 
-                        <th>Coach Surname</th>
+                        <th>Item Code</th>
 
-                        <th>Sport Name</th>
+                        <th>Item Quantity</th>
 
-                        <th>Coach Email</th>
+                        <th>Item Price</th>
 
-                        <th>Coach Phone Number</th>
+                        <th>Comments </th>
 
-                        <th>Profile Photo</th>
+                        <th>Last Update</th>
 
-                        <th>Edit</th>
+                        <th>Item Image</th>
 
+                        <th>Add / Remove Item</th>
+
+                        <th>Delete Item</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,21 +65,23 @@
                 </tbody>
                 <tfoot class="thead-light">
                     <tr>
-                        <th>Coach Number</th>
+                        <th>Item Name</th>
 
-                        <th>Coach Name</th>
+                        <th>Item Code</th>
 
-                        <th>Coach Surname</th>
+                        <th>Item Quantity</th>
 
-                        <th>Sport Name</th>
+                        <th>Item Price</th>
 
-                        <th>Coach Email</th>
+                        <th>Comments </th>
 
-                        <th>Coach Phone Number</th>
+                        <th>Last Update</th>
 
-                        <th>Profile Photo</th>
+                        <th>Item Image</th>
 
-                        <th>Edit</th>
+                        <th>Add / Remove Item</th>
+
+                        <th>Delete Item</th>
                     </tr>
                 </tfoot>
             </table>
@@ -88,11 +92,11 @@
 </div>
 
 
-<div class="modal fade in" id="add_coach" role="dialog" tabindex="-1" aria-labelledby="add_coach" aria-hidden="true">
+<div class="modal fade in" id="add_item" role="dialog" tabindex="-1" aria-labelledby="add_item" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header text-dark ">
-                <span>Add Coach</span>
+                <span>Add Item</span>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -110,78 +114,48 @@
                                 <div id="collapseOne1B" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample1">
                                     <div class="card-body">
                                         <div class="col-md-12">
-                                            <form onsubmit="add_coach(this);return false;" autocomplete="off">
+                                            <form onsubmit="add_item(this);return false;" autocomplete="off">
                                                 <div class="form-row">
 
-                                                    <div id="chooseDiv" class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Sport</label>
-                                                        <select class="form-control" name="coachSport" onchange="">
-                                                            <option value="" selected hidden>Select</option>
-                                                            <?php if (isset($sports)) {
-                                                                foreach ($sports as $r) { ?>
-                                                                    <option value="<?php echo $r['sportID']; ?>"><?php echo $r['sportName']; ?></option>
-
-
-                                                            <?php }
-                                                            } ?>
-                                                        </select>
-                                                    </div>
-
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==8) return false;" autocomplete="off" name="coachNumber" class="form-control">
-
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Firstname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="coachFirstname">
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Surname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="coachSurname">
+                                                        <label for="inputEmail4">Item Name</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="stockName">
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Gender</label>
-                                                        <select class="form-control" name="coachGender" required>
-                                                            <option value="" selected hidden>Select</option>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
-                                                        </select>
+                                                        <label for="inputEmail4">Item Code</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="stockCode">
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Date Of Birth</label>
-                                                        <input type="date" max="<?php echo date('Y-m-d', strtotime('-10 years')); ?>" required class="form-control" name="coachDob">
-                                                    </div>
+                                                        <label for="inputEmail4">Item Quantity</label>
+                                                        <input type="number" onKeyPress="if(this.value.length==5) return false;" autocomplete="off" name="stockQuantity" class="form-control">
 
+                                                    </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Address Or Residence</label>
-                                                        <textarea required maxlength="100" class="form-control" name="coachAddress"></textarea>
+                                                        <label for="inputEmail4">Item Price</label>
+                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" autocomplete="off" name="stockPrice" class="form-control">
+
                                                     </div>
 
                                                     <div class="form-group col-md-12">
-                                                        <label for="inputEmail4">Email</label>
-                                                        <input type="email" maxlength="100" class="form-control" name="coachEmail" onchange="validateEmail(this)">
-                                                    </div>
-                                                    <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Cellphone Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="coachCell" id="coachCell" onchange="validateCell(this)">
+                                                        <label for="inputEmail4">Comments</label>
+                                                        <textarea autocomplete="off" maxlength="150" name="comments" class="form-control"></textarea>
+
                                                     </div>
+
+
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red"></small>
-                                                        <label for="inputEmail4">Profile Photo</label>
-                                                        <input type="file" class="form-control" name="profilePhoto" id="profilePhoto" onblur="pic_format('profilePhoto')">
+                                                        <label for="inputEmail4">Item Image</label>
+                                                        <input type="file" class="form-control" name="stockImage" id="stockImage" onblur="pic_format('stockImage')">
                                                     </div>
 
 
@@ -213,13 +187,13 @@
     </div>
 </div>
 
-<!-- Edit coach -->
+<!-- Edit Student -->
 
-<div class="modal fade in" id="edit_coach" role="dialog" tabindex="-1" aria-labelledby="edit_coach" aria-hidden="true">
+<div class="modal fade in" id="edit_student" role="dialog" tabindex="-1" aria-labelledby="edit_student" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header text-dark ">
-                <span>Edit Coach</span>
+                <span>Edit Student</span>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -237,13 +211,13 @@
                                 <div id="collapseOne1B" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample1">
                                     <div class="card-body">
                                         <div class="col-md-12">
-                                            <form onsubmit="edit_coach(this);return false;" autocomplete="off">
+                                            <form onsubmit="edit_student(this);return false;" autocomplete="off">
                                                 <div class="form-row">
 
                                                     <div id="chooseDiv" class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label for="inputEmail4">Sport</label>
-                                                        <select class="form-control" id="edit_coachSport" name="coachSport">
+                                                        <select class="form-control" id="edit_studentSport" name="studentSport">
                                                             <option value="" selected hidden>Select</option>
                                                             <?php if (isset($sports)) {
                                                                 foreach ($sports as $r) { ?>
@@ -258,25 +232,25 @@
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==8) return false;" autocomplete="off" name="coachNumber" class="form-control" id="edit_coachNumber">
-                                                        <input type="hidden" id="coachID" name="coachID">
+                                                        <label for="inputEmail4">Student Number</label>
+                                                        <input type="number" onKeyPress="if(this.value.length==8) return false;" autocomplete="off" name="studentNumber" class="form-control" id="edit_studentNumber">
+                                                        <input type="hidden" id="studentID" name="studentID">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Firstname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="coachFirstname" id="edit_coachFirstname">
+                                                        <label for="inputEmail4">Student Firstname</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="studentFirstname" id="edit_studentFirstname">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Coach Surname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="coachSurname" id="edit_coachSurname">
+                                                        <label for="inputEmail4">Student Surname</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="studentSurname" id="edit_studentSurname">
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label for="inputEmail4">Gender</label>
-                                                        <select class="form-control" name="coachGender" id="edit_coachGender" required>
+                                                        <select class="form-control" name="studentGender" id="edit_studentGender" required>
                                                             <option value="" selected hidden>Select</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
@@ -286,24 +260,24 @@
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label for="inputEmail4">Date Of Birth</label>
-                                                        <input type="date" max="<?php echo date('Y-m-d', strtotime('-10 years')); ?>" required class="form-control" name="coachDob" id="edit_coachDob">
+                                                        <input type="date" max="<?php echo date('Y-m-d', strtotime('-10 years')); ?>" required class="form-control" name="studentDob" id="edit_studentDob">
                                                     </div>
 
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label for="inputEmail4">Address Or Residence</label>
-                                                        <textarea required maxlength="100" class="form-control" id="edit_coachAddress" name="coachAddress"></textarea>
+                                                        <textarea required maxlength="100" class="form-control" id="edit_studentAddress" name="studentAddress"></textarea>
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <label for="inputEmail4">Email</label>
-                                                        <input type="email" maxlength="100" class="form-control" name="coachEmail" id="edit_coachEmail" onchange="validateEmail(this)">
+                                                        <input type="email" maxlength="100" class="form-control" name="studentEmail" id="edit_studentEmail" onchange="validateEmail(this)">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
                                                         <label for="inputEmail4">Cellphone Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="coachCell" id="edit_coachCell" onchange="validateCell(this)">
+                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="studentCell" id="edit_studentCell" onchange="validateCell(this)">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red"></small>
@@ -364,17 +338,19 @@ echo view('partial/validations_js');
             let fileName = e.target.files[0].name;
             $('#getPicName').html(fileName);
         });
+
+
     });
 
     function preview() {
         frame.src = URL.createObjectURL(event.target.files[0]);
     }
 
-    function add_coach(form) {
+    function add_item(form) {
         $('#submitBtn').attr('disabled', 'true');
 
         $.ajax({
-            url: '<?php echo base_url('public/coach'); ?>',
+            url: '<?php echo base_url('public/inventory/create'); ?>',
             type: "post",
             data: new FormData(form),
             processData: false,
@@ -397,6 +373,7 @@ echo view('partial/validations_js');
                         })
                     }, 300);
                     $('#submitBtn').removeAttr('disabled');
+                    $(form).trigger("reset");
 
                     load_table();
                 } else {
@@ -431,11 +408,11 @@ echo view('partial/validations_js');
 
     }
 
-    function edit_coach(form) {
+    function edit_student(form) {
         $('#submitBtnEdit').attr('disabled', 'true');
 
         $.ajax({
-            url: '<?php echo base_url('public/coach/update'); ?>',
+            url: '<?php echo base_url('public/student/update'); ?>',
             type: "post",
             data: new FormData(form),
             processData: false,
@@ -496,22 +473,22 @@ echo view('partial/validations_js');
 
     }
 
-    function view_coach(t) {
+    function view_student(t) {
 
         $('#filesid').val($(t).attr('data-filesid'));
-        $('#coachID').val($(t).attr('data-coachID'));
-        $('#edit_coachSport').val($(t).attr('data-sportID'));
-        $('#edit_coachFirstname').val($(t).attr('data-coachFirstname'));
-        $('#edit_coachSurname').val($(t).attr('data-coachSurname'));
-        $('#edit_coachNumber').val($(t).attr('data-coachNumber'));
-        $('#edit_coachCell').val($(t).attr('data-coachCell'));
-        $('#edit_coachGender').val($(t).attr('data-coachGender'));
-        $('#edit_coachEmail').val($(t).attr('data-coachEmail'));
-        $('#edit_coachAddress').val($(t).attr('data-coachAddress'));
-        $('#edit_coachDob').val($(t).attr('data-coachDob'));
+        $('#studentID').val($(t).attr('data-studentID'));
+        $('#edit_studentSport').val($(t).attr('data-sportID'));
+        $('#edit_studentFirstname').val($(t).attr('data-studentFirstname'));
+        $('#edit_studentSurname').val($(t).attr('data-studentSurname'));
+        $('#edit_studentNumber').val($(t).attr('data-studentNumber'));
+        $('#edit_studentCell').val($(t).attr('data-studentCell'));
+        $('#edit_studentGender').val($(t).attr('data-studentGender'));
+        $('#edit_studentEmail').val($(t).attr('data-studentEmail'));
+        $('#edit_studentAddress').val($(t).attr('data-studentAddress'));
+        $('#edit_studentDob').val($(t).attr('data-studentDob'));
         $('#getPicName').html($(t).attr('data-picname'));
-        $('#getPicPath').html('<img id="pic" src = "<?php echo base_url(); ?>/assets/uploads/coach/' + $(t).attr('data-picname') + '" width = "70px" height = "70px" >')
-        $('#edit_coach').modal('show');
+        $('#getPicPath').html('<img id="pic" src = "<?php echo base_url(); ?>/assets/uploads/student/' + $(t).attr('data-picname') + '" width = "70px" height = "70px" >')
+        $('#edit_student').modal('show');
     }
 
     function load_table() {
@@ -522,66 +499,177 @@ echo view('partial/validations_js');
 
             "ajax": {
 
-                "url": "<?php echo base_url("public/coach"); ?>",
+                "url": "<?php echo base_url("public/inventory/index"); ?>",
 
             },
             'ordering': false,
             "columns": [{
-                    'data': "coachNumber"
+                    'data': "stockName"
                 },
                 {
-                    'data': "coachFirstname"
+                    'data': "stockCode"
                 },
                 {
-                    'data': "coachSurname"
+                    'data': "stockQuantity"
                 },
                 {
-                    'data': "sportName",
+                    'data': "stockPrice"
+                },
+                {
+                    'data': "comments",
 
                 },
                 {
-                    'data': "coachEmail"
+                    'data': "createdAt"
                 },
                 {
-                    'data': "coachCell"
-                },
-
-                {
-                    "data": "picname",
+                    'data': "stockImage",
                     render: function(data, type, row, meta) {
 
                         // $('[data-bs-toggle="popover"]').popover();
-                        $('#pic_' + row['coachID']).popover({
+                        $('#item_' + row['stockID']).popover({
                             placement: 'top',
                             trigger: 'hover',
                             html: true,
                             content: function() {
                                 var result = "";
 
-                                result += (('<div id="picDiv" class="media" style="pointer-events: none;"><img src="<?php echo base_url(); ?>/assets/uploads/coach/' + row['picname'] + '" width = "140px" height = "140px" class="mr-3" alt="No Image"><div class="media-body"></div></div>'));
+                                result += (('<div id="itemDiv" class="media" style="pointer-events: none;"><img src="<?php echo base_url(); ?>/assets/uploads/inventory/' + row['stockImage'] + '" width = "140px" height = "140px" class="mr-3" alt="No Image Available"><div class="media-body"></div></div>'));
 
                                 return result;
                             }
 
                         });
-                        var pic = ' <span id="pic_' + row['coachID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/coach/' + row['picname'] + '" width = "30px" height = "30px" onerror="this.onerror=null;this.src=\'<?php echo base_url(); ?>/assets/img/none.png \';"> ';
+                        var pic = ' <span id="item_' + row['stockID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/inventory/' + row['stockImage'] + '" width = "30px" height = "30px" onerror="this.onerror=null;this.src=\'<?php echo base_url(); ?>/assets/img/none.png \';"> ';
 
                         return pic;
                     }
-                }, {
+                },
+                {
                     "data": "",
                     render: function(data, type, row, meta) {
 
-                        var view = '<button onclick="view_coach(this)" data-coachID="' + row['coachID'] + '" data-sportID="' + row['sportID'] + '"  data-coachFirstname="' + row['coachFirstname'] + '"  data-coachSurname="' + row['coachSurname'] + '"  data-coachNumber="' + row['coachNumber'] + '"  data-coachCell="' + row['coachCell'] + '"  data-coachGender="' + row['coachGender'] + '"  data-coachEmail="' + row['coachEmail'] + '" data-coachAddress="' + row['coachAddress'] + '" data-coachDob="' + row['coachDob'] + '" data-filesid="' + row['filesid'] + '" data-picname="' + row['picname'] + '" class="btn btn-info text-white pl-2 pr-2 btn-sm ml-1 mr-1" title="Edit coach" >' +
-                            '<i class="fas fa-book-open"></i>' +
-                            '</button>';
+                        var view = ' <div id="hiddenContent" class="hidden"></div><div id="hiddenContentTwo" class="hidden"></div><div class="input-group"> <span class="input-group-prepend">' +
+                            '<button type="button" id="btnminus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm" onclick="minusItem(this)">' +
+                            '<span class="fa fa-minus" > </span> </button></span>' +
+                            ' <input id="plusminusinput" type="text" class="form-control " value="0" min="0" max="100000">' +
+                            '<span class="input-group-append">' +
+                            '<button type="button" id="btnplus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm mr-2" data-stockName="' + row["stockName"] + '" onclick="plusItem(this)">' +
+                            '<span class="fa fa-plus" > </span> </button> </span> ' +
+                            '</div> ';
 
                         return view;
+                    }
+                },
+                {
+                    "data": "",
+                    render: function(data, type, row, meta) {
+                        var deletes = '<button type="button" class="btn btn-outline-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Post" onclick=""> <i class="fa fa-trash"></i></button>';
+
+                        return deletes;
                     }
                 },
             ]
         });
 
 
+    }
+
+    function swal(stockName) {
+        var itemCount = $('#plusminusinput').val();
+        var item = Number(itemCount) > 1 ? "items" : "item"
+
+        Swal.fire({
+            title: stockName,
+            text: "Would you like to add " + itemCount + " " + item + "? ",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: 'info',
+            confirmButtonText: 'Yes, Add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added!',
+                    'Your item has been added.',
+                    'success'
+                )
+            }
+        })
+    }
+
+    function plusItem(btn) {
+        $('#plusminusinput').val(Number($('#plusminusinput').val()) + 1);
+
+        const $hidden = document.getElementById('hiddenContent');
+        var $myButton = document.getElementById(btn.id);
+        let intervalId;
+
+        const restartTimer = () => {
+            $hidden.classList.add('hidden');
+            intervalId = setInterval(() => {
+                $hidden.classList.remove('hidden');
+                if (!$hidden.classList.contains('hidden')) {
+                    clearInterval(intervalId);
+                    swal($(btn).attr('data-stockName'), )
+                }
+            }, 1500)
+
+        };
+
+        var cancelTimer = () => {
+
+            clearInterval(intervalId);
+            restartTimer();
+
+        };
+
+        $(btn).on('click', function() {
+            cancelTimer();
+        });
+        // $myButton.addEventListener('click', cancelTimer);
+        restartTimer();
+
+
+    }
+
+    function minusItem(btn) {
+        alert('minus item' + $('#plusminusinput').val());
+        if (Number($('#plusminusinput').val()) == 1) {
+            return false
+        }
+        if (Number($('#plusminusinput').val()) > 1) {
+            $('#plusminusinput').val(Number($('#plusminusinput').val()) - 1);
+
+            const $hidden = document.getElementById('hiddenContentTwo');
+            var $myButton = document.getElementById(btn.id);
+            let intervalId;
+
+            const restartTimer = () => {
+                $hidden.classList.add('hidden');
+                intervalId = setInterval(() => {
+                    $hidden.classList.remove('hidden');
+                    if (!$hidden.classList.contains('hidden')) {
+                        clearInterval(intervalId);
+                        swal($(btn).attr('data-stockName'), )
+                    }
+                }, 1500)
+
+            };
+
+            var cancelTimer = () => {
+
+                clearInterval(intervalId);
+                restartTimer();
+
+            };
+
+            $(btn).on('click', function() {
+                cancelTimer();
+            });
+
+            restartTimer();
+
+        }
     }
 </script>

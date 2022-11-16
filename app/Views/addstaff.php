@@ -547,7 +547,7 @@ echo view('partial/validations_js');
                             }
 
                         });
-                        var pic = ' <span id="pic_' + row['staffID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/staff/' + row['picname'] + '" width = "30px" height = "30px" > ';
+                        var pic = ' <span id="pic_' + row['staffID'] + '" data-bs-toggle="popover"> <img src = "<?php echo base_url(); ?>/assets/uploads/staff/' + row['picname'] + '" width = "30px" height = "30px" onerror="this.onerror=null;this.src=\'<?php echo base_url(); ?>/assets/img/none.png \';"> ';
 
                         return pic;
                     }

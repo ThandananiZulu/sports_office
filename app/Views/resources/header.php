@@ -3,10 +3,10 @@
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" onclick="containerWidthResize()">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon navbar-white"></span>
         </button>
 
-        <a class=" navbar-brand" href="#" title="Logout"><span class="fa fa-door-open"></span></a>
+
 
         <div class="offcanvas offcanvas-start border-right" style="margin-top:58px;background-color:white;max-width:300px" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header " style="margin-left:42px">
@@ -38,13 +38,13 @@
 
                         </ul>
                     </li>
-                    <li class="have-children"><a href="#"><span class="fa fa-trophy"></span>Award</a>
+                    <li class="have-children"><a href="#"><span class="fa fa-trophy"></span>Inventory</a>
                         <ul>
-                            <li><a href="#">Add Award</a></li>
-                            <li><a href="#">View Awards</a></li>
+                            <li class="mm-active"><a href="<?php echo base_url('public/inventory'); ?>">View inventory</a>
+
                         </ul>
                     </li>
-                    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Jury</a>
+                    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Reports</a>
                         <ul>
                             <li><a href="#">Add Jury</a></li>
                             <li><a href="#">View Juries</a></li>

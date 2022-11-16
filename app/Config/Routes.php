@@ -45,6 +45,7 @@ $routes->post('forgotPassword', 'User::forgotPassword');
 $routes->add('resetPassword', 'Route::reset_password');
 $routes->add('dashboard', 'Route::dashboard');
 $routes->add('addstudent', 'Route::addstudent');
+$routes->add('inventory', 'Route::inventory');
 $routes->add('addstaff', 'Route::addstaff');
 $routes->add('addcoach', 'Route::addcoach');
 $routes->add('', 'Route::addcoach');
@@ -56,11 +57,18 @@ $routes->resource('login');
 $routes->resource('staff');
 $routes->resource('coach');
 $routes->resource('student');
+// $routes->resource('inventory');
 $routes->add('student/update', 'Student::update');
 $routes->add('staff/update', 'Staff::update');
 $routes->add('coach/update', 'Coach::update');
 $routes->add('noticeboard/index', 'Noticeboard::index');
 $routes->add('noticeboard/create', 'Noticeboard::create');
+$routes->add('noticeboard/update', 'Noticeboard::update');
+$routes->add('noticeboard/delete', 'Noticeboard::delete');
+$routes->add('noticeboard/timePast', 'Noticeboard::timePast');
+$routes->add('inventory/index', 'Inventory::index');
+$routes->add('inventory/create', 'Inventory::create');
+$routes->add('inventory/update', 'Inventory::update');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

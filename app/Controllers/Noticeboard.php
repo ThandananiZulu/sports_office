@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
+
 use App\Models\noticeboardModel;
 use App\Models\noticeboardFilesModel;
 
@@ -17,6 +18,8 @@ class Noticeboard extends BaseController
 
     public function index()
     {
+        helper(['form', 'database', 'general']);
+
         $draw = intval($this->request->getVar("draw"));
         $start = intval($this->request->getVar("start"));
         $length = intval($this->request->getVar("length"));
@@ -26,20 +29,20 @@ class Noticeboard extends BaseController
         $db = \Config\Database::connect();
         $builder = $db->table('noticeboard');
         $builder->select('*');
-
+        $builder->where('status', 1);
         $data = $builder->get()->getResult();
 
         if ($data) {
             $cards = '';
 
             foreach ($data as $row) {
-                $cards .= ' <div class="cards" data-firstImage="' . $row->firstImage . '" data-secondImage="' . $row->secondImage . '" data-thirdImage="' . $row->thirdImage . '" style="cursor: pointer" onclick="showDetailed(this)">
+                $cards .= ' <div class="cards" id="cardID_' . $row->noticeID . '" data-noticeID="' . $row->noticeID . '" data-description="' . $row->description . '" data-title="' . $row->title . '" data-firstImage="' . $row->firstImage . '" data-secondImage="' . $row->secondImage . '" data-thirdImage="' . $row->thirdImage . '" style="cursor: pointer" onclick="showDetailed(this)">
             <div class="card-images">
                 <img class="card-img-top" src="' . base_url() . '/assets/uploads/noticeboard/' . $row->firstImage . '" alt="Card image cap">
             </div>
             <div class=" card-infos">
                 <h3 class="">' . $row->title . '</h3>
-                <p class="">' . $row->description . '</p> </div></div>';
+                <p class="">' . $row->description . '</p>   <p class="card-text"><small class="text-muted">Last updated ' . timeAgo($row->modifiedAt ? $row->modifiedAt : $row->createdAt) . '</small></p></div></div>';
             }
         } else {
             $output['error'] = true;
@@ -49,9 +52,10 @@ class Noticeboard extends BaseController
         $output = array(
 
             'draw' => $draw,
-            'recordsTotal' => count($notice),
+            'recordsTotal' => count($data),
 
         );
+        $output['info'] = $data;
         $output['data'] = $cards;
         $output['error'] = false;
         $output['message'] = 'Successful Added';
@@ -134,27 +138,16 @@ class Noticeboard extends BaseController
         helper(['form', 'database', 'general']);
 
         $rules = [
-            'studentFirstname' => 'required|max_length[100]|min_length[2]',
-            'studentSurname' => 'required|max_length[100]|min_length[2]',
-            'studentSport' => 'required|min_length[1]',
-            'studentGender' => 'required|min_length[1]',
-            'studentEmail' => 'required|min_length[1]',
-            'studentCell' => 'required|min_length[1]',
-            'studentNumber' => 'required|min_length[1]',
-            'studentID' => 'required|min_length[1]',
+            'description' => 'required|max_length[100]|min_length[2]',
+            'title' => 'required|max_length[100]|min_length[2]',
 
-            'studentAddress' => [
+
+            'noticeID' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Address is required.'
+                    'required' => 'The ID of the post is missing.'
                 ]
             ],
-            'studentDob' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Date of birth is required.'
-                ]
-            ]
 
         ];
 
@@ -164,60 +157,108 @@ class Noticeboard extends BaseController
             return $this->fail($this->validator->getErrors());
         } else {
             $data = [
-                'studentID' => $this->request->getVar('studentID'),
-                'studentFirstname' => $this->request->getVar('studentFirstname'),
-                'studentSurname' => $this->request->getVar('studentSurname'),
-                'studentNumber' => $this->request->getVar('studentNumber'),
-                'studentCell' => $this->request->getVar('studentCell'),
-                'studentGender' => $this->request->getVar('studentGender'),
-                'studentEmail' => $this->request->getVar('studentEmail'),
-                'studentAddress' => $this->request->getVar('studentAddress'),
-                'studentDob' => $this->request->getVar('studentDob'),
+                'noticeID' => $this->request->getVar('noticeID'),
+                'title' => $this->request->getVar('title'),
+                'description' => $this->request->getVar('description'),
+
                 'status' => 1,
                 'modifiedAt' => date('Y-m-d H:i:s')
             ];
+            $firstImagefile = $this->request->getFile('firstImage');
+            if ($firstImagefile)
+                if ($firstImagefile->isValid()) {
 
-
-            $model = new noticeboardModel();
-            $studentID = $model->update($this->request->getVar('studentID'), $data);
-
-            // if files"name" is empty , dont insert/update
-
-            $file = $this->request->getFile('profilePhoto');
-            $filesid = $this->request->getVar('filesid');
-            if ($file)
-                if ($file->isValid()) {
-
-                    $models = new noticeboardModel();
-
-                    $file->move('../assets/uploads/student/');
-
-                    $row['id'] = $filesid;
-                    $row['name'] = $file->getName();
-                    if (total_rows('studentfiles', ['id' => $filesid]) <= 0) {
-                        $models->insert(array(
-                            'name' => $row['name'],
-                            'title' => 'profile Pic',
-                            'created_date' => date('Y-m-d H:i:s'),
-                            'rel_id' => $this->request->getVar('studentID'),
-                            'rel' => 'student'
-                        ));
-                    } else {
-                        $fileDesc = get_file_name($filesid);
-
-                        $models->update($filesid, $row);
-
-                        unlink(ROOTPATH . "assets\uploads\student\\" . $fileDesc->name);
-                    }
+                    $firstImagefile->move('../assets/uploads/noticeboard/');
+                    $pic = $firstImagefile->getName();
+                    $data["firstImage"] = $pic;
                 }
 
+            $secondImagefile = $this->request->getFile('secondImage');
+            if ($secondImagefile)
+                if ($secondImagefile->isValid()) {
+
+                    $secondImagefile->move('../assets/uploads/noticeboard/');
+                    $pic = $secondImagefile->getName();
+                    $data["secondImage"] = $pic;
+                }
+
+            $thirdImagefile = $this->request->getFile('thirdImage');
+            if ($thirdImagefile)
+                if ($thirdImagefile->isValid()) {
+
+                    $thirdImagefile->move('../assets/uploads/noticeboard/');
+                    $pic = $thirdImagefile->getName();
+                    $data["thirdImage"] = $pic;
+                }
+
+            $model = new noticeboardModel();
+            $noticeboardID = $model->save($data);
 
 
-            $data['studentID'] = $studentID;
+
+
+
+
+
+
+            $data['noticeboardID'] = $noticeboardID;
             $output['data'] = $data;
             $output['error'] = false;
-            $output['message'] = 'Successful Added';
+            $output['message'] = 'Successfully Updated';
             return $this->respondCreated($output);
         }
+    }
+    public function delete()
+    {
+        helper(['form', 'database', 'general']);
+
+        $rules = [
+
+
+            'noticeID' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'The ID of the post is missing.'
+                ]
+            ],
+
+        ];
+
+
+        if (!$this->validate($rules)) {
+
+            return $this->fail($this->validator->getErrors());
+        } else {
+            $data = [
+                'noticeID' => $this->request->getVar('noticeID'),
+
+                'status' => 0,
+
+            ];
+
+            $model = new noticeboardModel();
+            $noticeboardID = $model->save($data);
+
+
+            $data['noticeboardID'] = $noticeboardID;
+            $output['data'] = $data;
+            $output['error'] = false;
+            $output['message'] = 'Successfully Deleted';
+            return $this->respondCreated($output);
+        }
+    }
+    public function timePast()
+    {
+        helper(['form', 'database', 'general']);
+
+        $modifiedAt = $this->request->getVar('modifiedAt');
+        $createdAt = $this->request->getVar('createdAt');
+
+        $time = timeAgo($modifiedAt ? $modifiedAt : $createdAt);
+
+        $output['data'] = $time;
+        $output['error'] = false;
+        $output['message'] = 'Successful';
+        return $this->respondCreated($output);
     }
 }
