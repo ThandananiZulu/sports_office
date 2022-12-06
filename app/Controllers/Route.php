@@ -168,4 +168,14 @@ class Route extends BaseController
             return view('auth/login');
         }
     }
+    public function requisition()
+    {
+        if (session()->has('staff')) {
+            $GLOBALS['SELECTED'] = 'requisition';
+
+            return view('requisition');
+        } else {
+            return view('auth/login');
+        }
+    }
 }

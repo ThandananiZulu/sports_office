@@ -187,13 +187,12 @@
     </div>
 </div>
 
-<!-- Edit Student -->
-
-<div class="modal fade in" id="edit_student" role="dialog" tabindex="-1" aria-labelledby="edit_student" aria-hidden="true">
+<!-- edit student -->
+<div class="modal fade in" id="edit_item" role="dialog" tabindex="-1" aria-labelledby="edit_item" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header text-dark ">
-                <span>Edit Student</span>
+                <span>Edit Item</span>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -203,95 +202,64 @@
 
 
                 <div class="tab-content p-3 pb-0">
-                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="accordion mb-5" id="accordionExample1">
+                    <div class="tab-pane active" id="profiles" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="accordion mb-5" id="accordionExample2">
                             <div class="card card-box">
 
 
-                                <div id="collapseOne1B" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample1">
+                                <div id="collapseOne2B" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample2">
                                     <div class="card-body">
                                         <div class="col-md-12">
-                                            <form onsubmit="edit_student(this);return false;" autocomplete="off">
+                                            <form onsubmit="edit_item(this);return false;" autocomplete="off">
                                                 <div class="form-row">
 
-                                                    <div id="chooseDiv" class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Sport</label>
-                                                        <select class="form-control" id="edit_studentSport" name="studentSport">
-                                                            <option value="" selected hidden>Select</option>
-                                                            <?php if (isset($sports)) {
-                                                                foreach ($sports as $r) { ?>
-                                                                    <option value="<?php echo $r['sportID']; ?>"><?php echo $r['sportName']; ?></option>
-
-
-                                                            <?php }
-                                                            } ?>
-                                                        </select>
-                                                    </div>
-
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Student Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==8) return false;" autocomplete="off" name="studentNumber" class="form-control" id="edit_studentNumber">
-                                                        <input type="hidden" id="studentID" name="studentID">
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Student Firstname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="studentFirstname" id="edit_studentFirstname">
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Student Surname</label>
-                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="studentSurname" id="edit_studentSurname">
+                                                        <label for="inputEmail4">Item Name</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="stockName" id="stockName">
+                                                        <input type="hidden" name="stockID" id="stockID">
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Gender</label>
-                                                        <select class="form-control" name="studentGender" id="edit_studentGender" required>
-                                                            <option value="" selected hidden>Select</option>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
-                                                        </select>
+                                                        <label for="inputEmail4">Item Code</label>
+                                                        <input type="text" required maxlength="100" onkeypress="return /[a-z ]/i.test(event.key)" class="form-control" name="stockCode" id="stockCode">
                                                     </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Date Of Birth</label>
-                                                        <input type="date" max="<?php echo date('Y-m-d', strtotime('-10 years')); ?>" required class="form-control" name="studentDob" id="edit_studentDob">
-                                                    </div>
+                                                        <label for="inputEmail4">Item Quantity</label>
+                                                        <input type="number" onKeyPress="if(this.value.length==5) return false;" autocomplete="off" name="stockQuantity" id="stockQuantity" class="form-control">
 
+                                                    </div>
 
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Address Or Residence</label>
-                                                        <textarea required maxlength="100" class="form-control" id="edit_studentAddress" name="studentAddress"></textarea>
+                                                        <label for="inputEmail4">Item Price</label>
+                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" autocomplete="off" name="stockPrice" id="stockPrice" class="form-control">
+
                                                     </div>
 
                                                     <div class="form-group col-md-12">
-                                                        <label for="inputEmail4">Email</label>
-                                                        <input type="email" maxlength="100" class="form-control" name="studentEmail" id="edit_studentEmail" onchange="validateEmail(this)">
-                                                    </div>
-                                                    <div class="form-group col-md-12">
                                                         <small style="color:red">*</small>
-                                                        <label for="inputEmail4">Cellphone Number</label>
-                                                        <input type="number" onKeyPress="if(this.value.length==10) return false;" required class="form-control" name="studentCell" id="edit_studentCell" onchange="validateCell(this)">
+                                                        <label for="inputEmail4">Comments</label>
+                                                        <textarea autocomplete="off" maxlength="150" name="comments" id="comments" class="form-control"></textarea>
+
                                                     </div>
+
+
                                                     <div class="form-group col-md-12">
                                                         <small style="color:red"></small>
-                                                        <label for="inputEmail4">Profile Photo</label>
-                                                        <input type="file" class="form-control" name="profilePhoto" id="edit_profilePhoto" onblur="pic_format('edit_profilePhoto')" oninput="pic.src=window.URL.createObjectURL(this.files[0])">
-                                                        <input type="hidden" name="filesid" id="filesid">
+                                                        <label for="inputEmail4">Item Image</label>
+                                                        <input type="file" class="form-control" name="stockImage" id="stockImage" onblur="pic_format('stockImage')" oninput="pic.src=window.URL.createObjectURL(this.files[0])">
                                                         <label class="mt-4" id="getPicName">No image</label>
                                                         <div id="getPicPath"></div>
-
                                                     </div>
 
 
                                                     <div class="form-group col-md-12 ">
-                                                        <button type="submit" id="submitBtnEdit" class="btn btn-primary ml-auto mt-5">Save</button>
+                                                        <button type="submit" id="submitBtn" class="btn btn-primary ml-auto">Save</button>
                                                     </div>
 
                                                 </div>
@@ -408,11 +376,11 @@ echo view('partial/validations_js');
 
     }
 
-    function edit_student(form) {
-        $('#submitBtnEdit').attr('disabled', 'true');
+    function edit_item(form) {
+
 
         $.ajax({
-            url: '<?php echo base_url('public/student/update'); ?>',
+            url: '<?php echo base_url('public/inventory/update'); ?>',
             type: "post",
             data: new FormData(form),
             processData: false,
@@ -427,26 +395,26 @@ echo view('partial/validations_js');
 
 
 
-                    // load_table();
-
                     setTimeout(function() {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Saved successful, continue',
+                            title: 'Updated successfully',
                             text: data.message,
                         })
-                    }, 300);
-                    $('#submitBtnEdit').removeAttr('disabled');
+                    }, 300).then(function() {
 
-                    load_table();
+
+                        load_table();
+                    });
+
                 } else {
 
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Could not add',
+                        title: 'Could not update',
                         text: data.message,
                     })
-                    $('#submitBtnEdit').removeAttr('disabled');
+
                 }
 
 
@@ -461,7 +429,7 @@ echo view('partial/validations_js');
                 for (x in person) {
                     text += person[x];
                 }
-                $('#submitBtnEdit').removeAttr('disabled');
+
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
@@ -473,23 +441,6 @@ echo view('partial/validations_js');
 
     }
 
-    function view_student(t) {
-
-        $('#filesid').val($(t).attr('data-filesid'));
-        $('#studentID').val($(t).attr('data-studentID'));
-        $('#edit_studentSport').val($(t).attr('data-sportID'));
-        $('#edit_studentFirstname').val($(t).attr('data-studentFirstname'));
-        $('#edit_studentSurname').val($(t).attr('data-studentSurname'));
-        $('#edit_studentNumber').val($(t).attr('data-studentNumber'));
-        $('#edit_studentCell').val($(t).attr('data-studentCell'));
-        $('#edit_studentGender').val($(t).attr('data-studentGender'));
-        $('#edit_studentEmail').val($(t).attr('data-studentEmail'));
-        $('#edit_studentAddress').val($(t).attr('data-studentAddress'));
-        $('#edit_studentDob').val($(t).attr('data-studentDob'));
-        $('#getPicName').html($(t).attr('data-picname'));
-        $('#getPicPath').html('<img id="pic" src = "<?php echo base_url(); ?>/assets/uploads/student/' + $(t).attr('data-picname') + '" width = "70px" height = "70px" >')
-        $('#edit_student').modal('show');
-    }
 
     function load_table() {
         $('#table_').dataTable().fnClearTable();
@@ -520,7 +471,11 @@ echo view('partial/validations_js');
 
                 },
                 {
-                    'data': "createdAt"
+                    'data': "createdAt",
+                    render: function(data, type, row, meta) {
+                        return data.substring(0, 10);
+                    }
+
                 },
                 {
                     'data': "stockImage",
@@ -550,11 +505,11 @@ echo view('partial/validations_js');
                     render: function(data, type, row, meta) {
 
                         var view = ' <div id="hiddenContent" class="hidden"></div><div id="hiddenContentTwo" class="hidden"></div><div class="input-group"> <span class="input-group-prepend">' +
-                            '<button type="button" id="btnminus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm" onclick="minusItem(this)">' +
+                            '<button type="button" id="btnminus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm" data-stockID="' + row["stockID"] + '" data-stockName="' + row["stockName"] + '" onclick="minusItem(this)">' +
                             '<span class="fa fa-minus" > </span> </button></span>' +
-                            ' <input id="plusminusinput" type="text" class="form-control " value="0" min="0" max="100000">' +
+                            ' <input id="plusminusinput" type="number" class="form-control " value="0" min="0" max="100000">' +
                             '<span class="input-group-append">' +
-                            '<button type="button" id="btnplus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm mr-2" data-stockName="' + row["stockName"] + '" onclick="plusItem(this)">' +
+                            '<button type="button" id="btnplus_' + row["stockID"] + '" class="btn btn-outline-secondary btn-sm mr-2" data-stockID="' + row["stockID"] + '" data-stockName="' + row["stockName"] + '" onclick="plusItem(this)">' +
                             '<span class="fa fa-plus" > </span> </button> </span> ' +
                             '</div> ';
 
@@ -564,9 +519,13 @@ echo view('partial/validations_js');
                 {
                     "data": "",
                     render: function(data, type, row, meta) {
-                        var deletes = '<button type="button" class="btn btn-outline-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Post" onclick=""> <i class="fa fa-trash"></i></button>';
+                        var include = 'data-stockID="' + row['stockID'] + '" data-stockName="' + row['stockName'] + '" data-stockCode="' + row['stockCode'] + '" data-stockQuantity="' + row['stockQuantity'] + '" data-stockPrice="' + row['stockPrice'] + '" data-comments="' + row['comments'] + '" data-createdAt="' + row['createdAt'] + '" data-stockImage="' + row['stockImage'] + '"';
 
-                        return deletes;
+                        var edit = '<button type="button" onclick="view_item(this)"  ' + include + ' class="btn btn-outline-primary mr-2 mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Item"> <i class="fa fa-pencil-square-o"> </i></button >';
+
+                        var deletes = '<button type="button"  onclick="swalDelete(this)" ' + include + '  class="btn btn-outline-danger " data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Post" onclick=""> <i class="fa fa-trash"></i></button>';
+
+                        return edit + deletes;
                     }
                 },
             ]
@@ -575,7 +534,98 @@ echo view('partial/validations_js');
 
     }
 
-    function swal(stockName) {
+    function view_item(t) {
+
+        $('#comments').val($(t).attr('data-comments'));
+        $('#stockPrice').val($(t).attr('data-stockPrice'));
+        $('#stockQuantity').val($(t).attr('data-stockQuantity'));
+        $('#stockCode').val($(t).attr('data-stockCode'));
+        $('#stockID').val($(t).attr('data-stockID'));
+        $('#stockName').val($(t).attr('data-stockName'));
+        $('#getPicName').html($(t).attr('data-stockImage'));
+        $('#getPicPath').html('<img id="pic" src = "<?php echo base_url(); ?>/assets/uploads/inventory/' + $(t).attr('data-stockImage') + '" width = "70px" height = "70px" >')
+        $('#edit_item').modal('show');
+    }
+
+    function delete_notice(stockID) {
+
+
+        $.ajax({
+            url: '<?php echo base_url('public/inventory/delete'); ?>',
+            type: "post",
+            data: {
+                stockID: stockID
+            },
+
+            timeout: 0,
+
+            cache: false,
+            async: false,
+            success: function(data) {
+
+                if (data.error == false) {
+
+
+
+                    setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted successfully',
+                            text: data.message,
+                        })
+                    }, 300);
+
+                } else {
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Something went wrong',
+                        text: data.message,
+                    })
+
+                }
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
+
+                data = JSON.parse(XMLHttpRequest.responseText);
+                var text = '';
+                var person = data.messages;
+                for (x in person) {
+                    text += person[x];
+                }
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: text,
+                })
+
+            }
+        });
+
+    }
+
+    function swalDelete(val) {
+
+        Swal.fire({
+            title: $(val).attr('data-stockName'),
+            text: "Are you sure about deleting this item?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: 'warning',
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                delete_notice($(val).attr('data-stockID'))
+            }
+        })
+    }
+
+    function swalPlus(stockName, id) {
         var itemCount = $('#plusminusinput').val();
         var item = Number(itemCount) > 1 ? "items" : "item"
 
@@ -589,6 +639,7 @@ echo view('partial/validations_js');
             confirmButtonText: 'Yes, Add it!'
         }).then((result) => {
             if (result.isConfirmed) {
+                plusQuantity(id, itemCount);
                 Swal.fire(
                     'Added!',
                     'Your item has been added.',
@@ -596,6 +647,158 @@ echo view('partial/validations_js');
                 )
             }
         })
+    }
+
+    function swalMinus(stockName, id) {
+        var itemCount = $('#plusminusinput').val();
+        var item = Number(itemCount) > 1 ? "items" : "item"
+
+        Swal.fire({
+            title: stockName,
+            text: "Would you like to remove " + itemCount + " " + item + "? ",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: 'info',
+            confirmButtonText: 'Yes, Remove it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                minusQuantity(id, itemCount);
+                Swal.fire(
+                    'Removed!',
+                    'Your item has been removed.',
+                    'success'
+                )
+            }
+        })
+    }
+
+    function minusQuantity(id, itemCount) {
+
+        $.ajax({
+            url: '<?php echo base_url('public/inventory/minus'); ?>',
+            type: "post",
+            data: {
+                stockID: id,
+                stockQuantity: itemCount
+            },
+
+            timeout: 0,
+
+            cache: false,
+            async: false,
+            success: function(data) {
+
+                if (data.error == false) {
+
+
+
+                    setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'removed successfully',
+                            text: data.message,
+                        }).then(function() {
+                            load_table();
+                        });;
+
+                    }, 300);
+
+                } else {
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Something went wrong',
+                        text: data.message,
+                    })
+
+                }
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
+
+                data = JSON.parse(XMLHttpRequest.responseText);
+                var text = '';
+                var person = data.messages;
+                for (x in person) {
+                    text += person[x];
+                }
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: text,
+                })
+
+            }
+        });
+
+
+    }
+
+    function plusQuantity(id, itemCount) {
+
+        $.ajax({
+            url: '<?php echo base_url('public/inventory/plus'); ?>',
+            type: "post",
+            data: {
+                stockID: id,
+                stockQuantity: itemCount
+            },
+
+            timeout: 0,
+
+            cache: false,
+            async: false,
+            success: function(data) {
+
+                if (data.error == false) {
+
+
+
+                    setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'added successfully',
+                            text: data.message,
+                        }).then(function() {
+                            load_table();
+                        });;
+
+                    }, 300);
+
+                } else {
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Something went wrong',
+                        text: data.message,
+                    })
+
+                }
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
+
+                data = JSON.parse(XMLHttpRequest.responseText);
+                var text = '';
+                var person = data.messages;
+                for (x in person) {
+                    text += person[x];
+                }
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: text,
+                })
+
+            }
+        });
+
+
     }
 
     function plusItem(btn) {
@@ -611,7 +814,7 @@ echo view('partial/validations_js');
                 $hidden.classList.remove('hidden');
                 if (!$hidden.classList.contains('hidden')) {
                     clearInterval(intervalId);
-                    swal($(btn).attr('data-stockName'), )
+                    swalPlus($(btn).attr('data-stockName'), $(btn).attr('data-stockID'))
                 }
             }, 1500)
 
@@ -634,42 +837,37 @@ echo view('partial/validations_js');
     }
 
     function minusItem(btn) {
-        alert('minus item' + $('#plusminusinput').val());
-        if (Number($('#plusminusinput').val()) == 1) {
-            return false
-        }
-        if (Number($('#plusminusinput').val()) > 1) {
+        if ($('#plusminusinput').val() != 0)
             $('#plusminusinput').val(Number($('#plusminusinput').val()) - 1);
 
-            const $hidden = document.getElementById('hiddenContentTwo');
-            var $myButton = document.getElementById(btn.id);
-            let intervalId;
+        const $hidden = document.getElementById('hiddenContentTwo');
+        var $myButton = document.getElementById(btn.id);
+        let intervalId;
 
-            const restartTimer = () => {
-                $hidden.classList.add('hidden');
-                intervalId = setInterval(() => {
-                    $hidden.classList.remove('hidden');
-                    if (!$hidden.classList.contains('hidden')) {
-                        clearInterval(intervalId);
-                        swal($(btn).attr('data-stockName'), )
-                    }
-                }, 1500)
+        const restartTimer = () => {
+            $hidden.classList.add('hidden');
+            intervalId = setInterval(() => {
+                $hidden.classList.remove('hidden');
+                if (!$hidden.classList.contains('hidden')) {
+                    clearInterval(intervalId);
+                    swalMinus($(btn).attr('data-stockName'), $(btn).attr('data-stockID'))
+                }
+            }, 1500)
 
-            };
+        };
 
-            var cancelTimer = () => {
+        var cancelTimer = () => {
 
-                clearInterval(intervalId);
-                restartTimer();
-
-            };
-
-            $(btn).on('click', function() {
-                cancelTimer();
-            });
-
+            clearInterval(intervalId);
             restartTimer();
 
-        }
+        };
+
+        $(btn).on('click', function() {
+            cancelTimer();
+        });
+
+        restartTimer();
+
     }
 </script>

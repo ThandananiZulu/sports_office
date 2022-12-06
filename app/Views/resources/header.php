@@ -44,10 +44,9 @@
 
                         </ul>
                     </li>
-                    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Reports</a>
+                    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Requisition</a>
                         <ul>
-                            <li><a href="#">Add Jury</a></li>
-                            <li><a href="#">View Juries</a></li>
+                            <li><a href="<?php echo base_url('public/requisition'); ?>">View Requisition</a></li>
                         </ul>
                     </li>
                     <li class="have-children"><a href="#"><span class="fa fa-user-o"></span>Author</a>

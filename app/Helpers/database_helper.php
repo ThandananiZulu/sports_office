@@ -50,6 +50,36 @@ function get_sports()
 
     return $data;
 }
+function get_sports_result()
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('sport');
+    $data = $builder->get();
+
+    $data = $data->getResult();
+
+    return $data;
+}
+function minusQuan($quan, $stock)
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('inventory');
+    $builder->set('stockQuantity', 'stockQuantity-' . $quan . '', false);
+    $builder->where('stockID', $stock);
+    $data = $builder->update();
+
+    return $data;
+}
+function plusQuan($quan, $stock)
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('inventory');
+    $builder->set('stockQuantity', 'stockQuantity+' . $quan . '', false);
+    $builder->where('stockID', $stock);
+    $data = $builder->update();
+
+    return $data;
+}
 function get_file_name($id)
 {
     $db = \Config\Database::connect();

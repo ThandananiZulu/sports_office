@@ -88,7 +88,7 @@
 </div>
 
 
-<div class="" id="add_student" role="dialog" tabindex="-1" aria-labelledby="add_student" aria-hidden="true">
+<div class="modal fade in" id="add_student" role="dialog" tabindex="-1" aria-labelledby="add_student" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header text-dark ">

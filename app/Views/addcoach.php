@@ -526,6 +526,7 @@ echo view('partial/validations_js');
 
             },
             'ordering': false,
+            
             "columns": [{
                     'data': "coachNumber"
                 },

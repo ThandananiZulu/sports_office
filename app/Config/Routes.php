@@ -50,6 +50,7 @@ $routes->add('addstaff', 'Route::addstaff');
 $routes->add('addcoach', 'Route::addcoach');
 $routes->add('', 'Route::addcoach');
 $routes->add('noticeboard', 'Route::noticeboard');
+$routes->add('requisition', 'Route::requisition');
 
 $routes->resource('route');
 $routes->resource('user');
@@ -69,6 +70,13 @@ $routes->add('noticeboard/timePast', 'Noticeboard::timePast');
 $routes->add('inventory/index', 'Inventory::index');
 $routes->add('inventory/create', 'Inventory::create');
 $routes->add('inventory/update', 'Inventory::update');
+$routes->add('inventory/delete', 'Inventory::delete');
+$routes->add('inventory/minus', 'Inventory::minus');
+$routes->add('inventory/plus', 'Inventory::plus');
+$routes->add('requisition/index', 'Requisition::index');
+$routes->add('requisition/create', 'Requisition::create');
+$routes->add('requisition/update', 'Requisition::update');
+$routes->add('requisition/delete', 'Requisition::delete');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

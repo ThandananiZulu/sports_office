@@ -51,9 +51,60 @@
         box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
     }
 
+    .signature-component {
+        text-align: left;
+        display: inline-block;
+        max-width: 100%;
+
+    }
+
+    .signature-component canvas {
+        display: block;
+        position: relative;
+        border: 1px solid;
+    }
+
+    canvas {
+        display: block;
+        position: relative;
+        border: 1px solid;
+    }
+
+    .signature-component button {
+        padding: 1em;
+        background: transparent;
+        box-shadow: 2px 2px 4px #777;
+        margin-top: .5em;
+        border: 1px solid #777;
+        font-size: 1rem;
+
+
+    }
+
+    .signature-component button.toggle {
+        background: rgba(red, .2);
+    }
+
+    .signature-component img {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
     .logo {
         width: 100px;
         margin: auto;
+    }
+
+    .req-img {
+        width: 100px;
+
+        margin-left: 435px;
+        object-fit: cover;
+    }
+
+    .req-title {
+        margin-left: 428px;
     }
 
     .logo img {
@@ -287,7 +338,12 @@
         overflow-y: auto;
     }
 
-    .modal.fade.in {
+    .req-body {
+        height: 80vh;
+        overflow-y: auto;
+    }
+
+    .req-body .modal.fade.in {
         overflow-y: hidden;
     }
 
