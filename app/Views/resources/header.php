@@ -49,10 +49,9 @@
                             <li><a href="<?php echo base_url('public/requisition'); ?>">View Requisition</a></li>
                         </ul>
                     </li>
-                    <li class="have-children"><a href="#"><span class="fa fa-user-o"></span>Author</a>
+                    <li class="have-children"><a href="#"><span class="fa fa-gavel"></span>Chat</a>
                         <ul>
-                            <li><a href="#">Add Author</a></li>
-                            <li><a href="#">View Authors</a></li>
+                            <li><a href="<?php echo base_url('public/chat'); ?>">View Chats</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span class="fa fa-picture-o"></span>Gallery</a></li>

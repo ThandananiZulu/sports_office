@@ -178,4 +178,14 @@ class Route extends BaseController
             return view('auth/login');
         }
     }
+    public function chat()
+    {
+        if (session()->has('staff')) {
+            $GLOBALS['SELECTED'] = 'chat';
+
+            return view('chat');
+        } else {
+            return view('auth/login');
+        }
+    }
 }

@@ -51,6 +51,7 @@ $routes->add('addcoach', 'Route::addcoach');
 $routes->add('', 'Route::addcoach');
 $routes->add('noticeboard', 'Route::noticeboard');
 $routes->add('requisition', 'Route::requisition');
+$routes->add('chat', 'Route::chat');
 
 $routes->resource('route');
 $routes->resource('user');
