@@ -96,6 +96,22 @@
         margin: auto;
     }
 
+    .profileImages {
+        width: 160px;
+        margin: auto;
+    }
+
+    .profileImages img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0px 0px 3px #5f5f5f,
+            0px 0px 0px 5px #ecf0f3,
+            8px 8px 15px #a7aaa7,
+            -8px -8px 15px #fff;
+    }
+
     .req-img {
         width: 100px;
 

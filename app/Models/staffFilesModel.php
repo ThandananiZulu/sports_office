@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class StaffFilesModel extends Model
 {
-    protected $table = 'studentfiles';
+    protected $table = 'stafffiles';
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'name',

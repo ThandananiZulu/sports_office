@@ -39,6 +39,7 @@ $routes->set404Override();
 
 $routes->get('/', 'Route::login');
 $routes->get('login', 'Route::login');
+$routes->get('logout', 'Route::logout');
 
 $routes->add('forgot', 'Route::forgot');
 $routes->post('forgotPassword', 'User::forgotPassword');
@@ -52,6 +53,7 @@ $routes->add('', 'Route::addcoach');
 $routes->add('noticeboard', 'Route::noticeboard');
 $routes->add('requisition', 'Route::requisition');
 $routes->add('chat', 'Route::chat');
+
 
 $routes->resource('route');
 $routes->resource('user');
@@ -78,6 +80,13 @@ $routes->add('requisition/index', 'Requisition::index');
 $routes->add('requisition/create', 'Requisition::create');
 $routes->add('requisition/update', 'Requisition::update');
 $routes->add('requisition/delete', 'Requisition::delete');
+
+$routes->add('chat/fetchAllUsers', 'Chat::fetchAllUsers');
+$routes->add('chat/fetchUser', 'Chat::fetchUser');
+$routes->add('chat/index', 'Chat::index');
+$routes->add('chat/create', 'Chat::create');
+$routes->add('chat/update', 'Chat::update');
+$routes->add('chat/delete', 'Chat::delete');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

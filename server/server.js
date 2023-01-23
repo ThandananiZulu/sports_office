@@ -1,16 +1,16 @@
+const httpServer = require("http").createServer();
 const io = require("socket.io")(3000, {
-  cors: { origin: ["http://localhost"] },
+  cors: { origin: "*" },
 });
+
+var users = [];
+
 io.on("connection", (socket) => {
-  console.log(socket.id);
-  socket.on("send-message", (message, room) => {
-    if (room === "") {
-      socket.broadcast.emit("recieve-message", message);
-    } else {
-      socket.to(room).emit("recieve-message", message);
-    }
+  socket.on("connected", (userID) => {
+    users[userID] = socket.id;
+    console.log("wow" + users[userID]);
   });
-  socket.on("join-room", (room) => {
-    socket.join(room);
+  socket.on("sendEvent", (event, message, sender) => {
+    io.to(users[event]).emit("message", message, sender);
   });
 });

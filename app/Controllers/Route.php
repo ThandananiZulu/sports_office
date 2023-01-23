@@ -188,4 +188,15 @@ class Route extends BaseController
             return view('auth/login');
         }
     }
+    public function logout()
+    {
+
+        if (session()->has('staff')) {
+
+            session()->destroy();
+            return view('auth/login');
+        } else {
+            return view('auth/login');
+        }
+    }
 }

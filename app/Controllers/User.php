@@ -25,7 +25,8 @@ class User extends BaseController
             $username = $r->request['username'];
             $db = \Config\Database::connect();
             $builder = $db->table('staff');
-            $builder->select('staff.*');
+            $builder->join('stafffiles', 'staff.staffID = stafffiles.rel_id', 'left');
+            $builder->select('staff.*,stafffiles.rel, stafffiles.title, stafffiles.name');
 
             $builder->where('staff.staffEmail', $username);
 

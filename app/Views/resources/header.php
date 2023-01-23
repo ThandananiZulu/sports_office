@@ -1,11 +1,16 @@
 <?php helper(['database', 'url']); ?>
-<nav class="navbar navbar-muted bg-muted fixed-top">
+
+<nav class="navbar navbar-dark bg-white fixed-top border">
+
     <div class="container-fluid">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" onclick="containerWidthResize()">
-            <span class="navbar-toggler-icon navbar-white"></span>
+        <button class="navbar-toggler text-secondary border border-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" onclick="containerWidthResize()">
+            <span class=""><i class="fa-solid fa-bars"></i></span>
         </button>
-
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
 
 
         <div class="offcanvas offcanvas-start border-right" style="margin-top:58px;background-color:white;max-width:300px" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
@@ -66,6 +71,11 @@
                     </li>
                     <li><a href="#"><span class="fa fa-envelope-o"></span>Messages</a></li>
                     <li><a href="#"><span class="fa fa-gear"></span>Configuration</a></li>
+                    <div class="app-sidebar--footer d-block text-center py-3">
+                        <a href="<?php echo base_url('public/logout'); ?>" class="btn btn-warning btn-sm font-weight-bold" title="">
+                            Logout
+                        </a>
+                    </div>
                 </ul>
 
 
